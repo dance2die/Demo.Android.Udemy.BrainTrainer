@@ -24,4 +24,116 @@
         android:backgroundTint="#2cf508"
         android:onClick="start"
         android:visibility="invisible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="30s"
+        android:id="@+id/timerTextView"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/startButton"
+        android:layout_toStartOf="@+id/startButton"
+        android:textSize="30sp"
+        android:padding="10dp"
+        android:background="#f9f795" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0/0"
+        android:id="@+id/pointsTextView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:padding="10dp"
+        android:textSize="30sp"
+        android:background="#f2a726" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="35 + 12"
+        android:id="@+id/sumTextView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:padding="15dp"
+        android:textSize="25sp"
+        android:textColor="#0f0101" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sumTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:id="@+id/button0"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:tag="0"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:textSize="80sp"
+            android:background="#ff444eff"
+            android:onClick="chooseAnswer" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:id="@+id/button1"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:tag="1"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:textSize="80sp"
+            android:background="#ff11ff46"
+            android:onClick="chooseAnswer" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:id="@+id/button2"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:tag="2"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:textSize="80sp"
+            android:background="#ffff09e4"
+            android:onClick="chooseAnswer" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:id="@+id/button3"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:tag="3"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:textSize="80sp"
+            android:background="#ff0bfffd"
+            android:onClick="chooseAnswer" />
+    </GridLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Correct!"
+        android:id="@+id/resultTextView"
+        android:layout_alignBottom="@+id/startButton"
+        android:layout_centerHorizontal="true"
+        android:textSize="40sp" />
 </RelativeLayout>

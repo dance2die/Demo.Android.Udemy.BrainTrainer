@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,6 +38,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         startButton = (Button) findViewById(R.id.startButton);
+
+        Random random = new Random();
+        int a = random.nextInt(21);
+        int b = random.nextInt(21);
+
+        TextView sumTextView = (TextView) findViewById(R.id.sumTextView);
+        sumTextView.setText(String.format("%s + %s", Integer.toString(a), Integer.toString(b)));
     }
 
     @Override
