@@ -5,7 +5,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +20,44 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Integer> answers = new ArrayList<>();
     private int locationOfCorrectAnswer;
     private TextView resultTextView;
+    private TextView pointsTextView;
+    private TextView sumTextView;
     private int score;
+    private int numberOfQuestions = 0;
+    private Button button0;
+    private Button button1;
+    private Button button2;
+    private Button button3;
+
+    private void generateQuestion(){
+        Random random = new Random();
+        int a = random.nextInt(21);
+        int b = random.nextInt(21);
+        int answer = a + b;
+
+        sumTextView.setText(String.format("%s + %s", Integer.toString(a), Integer.toString(b)));
+
+        locationOfCorrectAnswer = random.nextInt(4);
+        int incorrectAnswer;
+
+        answers.clear();
+        for(int i = 0; i < 4; i++){
+            if (i == locationOfCorrectAnswer){
+                answers.add(answer);
+            } else {
+                do {
+                    incorrectAnswer = random.nextInt(41);
+                } while (incorrectAnswer == answer);
+
+                answers.add(incorrectAnswer);
+            }
+        }
+
+        button0.setText(Integer.toString(answers.get(0)));
+        button1.setText(Integer.toString(answers.get(1)));
+        button2.setText(Integer.toString(answers.get(2)));
+        button3.setText(Integer.toString(answers.get(3)));
+    }
 
     public void chooseAnswer(View view){
         if (view.getTag().equals(Integer.toString(locationOfCorrectAnswer))) {
@@ -30,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
         } else {
             resultTextView.setText("Wrong!!!");
         }
+
+        numberOfQuestions++;
+        pointsTextView.setText(String.format("%s/%s", score, numberOfQuestions));
+        generateQuestion();
     }
 
     public void start(View view){
@@ -53,41 +93,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
         startButton = (Button) findViewById(R.id.startButton);
-
-        Random random = new Random();
-        int a = random.nextInt(21);
-        int b = random.nextInt(21);
-        int answer = a + b;
-
-        TextView sumTextView = (TextView) findViewById(R.id.sumTextView);
-        sumTextView.setText(String.format("%s + %s", Integer.toString(a), Integer.toString(b)));
-
-        locationOfCorrectAnswer = random.nextInt(4);
-        int incorrectAnswer;
-
-        for(int i = 0; i < 4; i++){
-            if (i == locationOfCorrectAnswer){
-                answers.add(answer);
-            } else {
-                do {
-                    incorrectAnswer = random.nextInt(41);
-                } while (incorrectAnswer == answer);
-
-                answers.add(incorrectAnswer);
-            }
-        }
-
-        Button button0 = (Button) findViewById(R.id.button0);
-        Button button1 = (Button) findViewById(R.id.button1);
-        Button button2 = (Button) findViewById(R.id.button2);
-        Button button3 = (Button) findViewById(R.id.button3);
-
-        button0.setText(Integer.toString(answers.get(0)));
-        button1.setText(Integer.toString(answers.get(1)));
-        button2.setText(Integer.toString(answers.get(2)));
-        button3.setText(Integer.toString(answers.get(3)));
-
+        sumTextView = (TextView) findViewById(R.id.sumTextView);
         resultTextView = (TextView) findViewById(R.id.resultTextView);
+        pointsTextView = (TextView) findViewById(R.id.pointsTextView);
+
+        button0 = (Button) findViewById(R.id.button0);
+        button1 = (Button) findViewById(R.id.button1);
+        button2 = (Button) findViewById(R.id.button2);
+        button3 = (Button) findViewById(R.id.button3);
+
+
+        generateQuestion();
     }
 
     @Override
