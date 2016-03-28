@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +20,17 @@ public class MainActivity extends AppCompatActivity {
     private Button startButton;
     private ArrayList<Integer> answers = new ArrayList<>();
     private int locationOfCorrectAnswer;
+    private TextView resultTextView;
+    private int score;
+
+    public void chooseAnswer(View view){
+        if (view.getTag().equals(Integer.toString(locationOfCorrectAnswer))) {
+            score++;
+            resultTextView.setText("Correct!");
+        } else {
+            resultTextView.setText("Wrong!!!");
+        }
+    }
 
     public void start(View view){
         startButton.setVisibility(View.INVISIBLE);
@@ -74,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
         button1.setText(Integer.toString(answers.get(1)));
         button2.setText(Integer.toString(answers.get(2)));
         button3.setText(Integer.toString(answers.get(3)));
+
+        resultTextView = (TextView) findViewById(R.id.resultTextView);
     }
 
     @Override
