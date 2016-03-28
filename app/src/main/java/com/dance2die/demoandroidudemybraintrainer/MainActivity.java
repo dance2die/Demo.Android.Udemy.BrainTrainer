@@ -1,6 +1,7 @@
 package com.dance2die.demoandroidudemybraintrainer;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -22,12 +23,39 @@ public class MainActivity extends AppCompatActivity {
     private TextView resultTextView;
     private TextView pointsTextView;
     private TextView sumTextView;
+    private TextView timerTextView;
     private int score;
     private int numberOfQuestions = 0;
     private Button button0;
     private Button button1;
     private Button button2;
     private Button button3;
+    private Button playAgainButton;
+
+    public void playAgain(View view){
+        score = 0;
+        numberOfQuestions = 0;
+        timerTextView.setText("30s");
+        pointsTextView.setText("0/0");
+        resultTextView.setText("");
+        playAgainButton.setVisibility(View.INVISIBLE);
+
+        generateQuestion();
+
+        new CountDownTimer(30100, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timerTextView.setText(String.valueOf(millisUntilFinished / 1000) + "s");
+            }
+
+            @Override
+            public void onFinish() {
+                playAgainButton.setVisibility(View.VISIBLE);
+                timerTextView.setText("0s");
+                resultTextView.setText("Your score: " + String.format("%s/%s", score, numberOfQuestions));
+            }
+        }.start();
+    }
 
     private void generateQuestion(){
         Random random = new Random();
@@ -96,14 +124,15 @@ public class MainActivity extends AppCompatActivity {
         sumTextView = (TextView) findViewById(R.id.sumTextView);
         resultTextView = (TextView) findViewById(R.id.resultTextView);
         pointsTextView = (TextView) findViewById(R.id.pointsTextView);
+        timerTextView = (TextView) findViewById(R.id.timerTextView);
 
         button0 = (Button) findViewById(R.id.button0);
         button1 = (Button) findViewById(R.id.button1);
         button2 = (Button) findViewById(R.id.button2);
         button3 = (Button) findViewById(R.id.button3);
+        playAgainButton = (Button) findViewById(R.id.playAgainButton);
 
-
-        generateQuestion();
+        playAgain(playAgainButton);
     }
 
     @Override
