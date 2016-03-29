@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button2;
     private Button button3;
     private Button playAgainButton;
+    private RelativeLayout gameRelativeLayout;
 
     public void playAgain(View view){
         score = 0;
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         generateQuestion();
 
-        new CountDownTimer(30100, 1000) {
+        new CountDownTimer(3010, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 timerTextView.setText(String.valueOf(millisUntilFinished / 1000) + "s");
@@ -102,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void start(View view){
         startButton.setVisibility(View.INVISIBLE);
+        gameRelativeLayout.setVisibility(View.VISIBLE);
+        playAgain(view);
     }
 
     @Override
@@ -132,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         button3 = (Button) findViewById(R.id.button3);
         playAgainButton = (Button) findViewById(R.id.playAgainButton);
 
-        playAgain(playAgainButton);
+        gameRelativeLayout = (RelativeLayout) findViewById(R.id.gameRelativeLayout);
     }
 
     @Override
